@@ -1,9 +1,8 @@
-[package]
+[workspace]
+members = [
+    "bt-backend",
+    "gtk-frontend",
+]
 name = "sound-connect-PC"
 version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-bluer = { version = "0.17.3", features = ["full"] }
-futures = "0.3.31"
-tokio = { version = "1.0.0", features = ["rt", "rt-multi-thread", "macros"] }
+edition = "2025"
