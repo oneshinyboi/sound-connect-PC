@@ -44,11 +44,11 @@ async fn find_sony_device(adapter: &Adapter) -> Result<Device, Box<dyn std::erro
     while let Some(evt) = events.next().await {
         match evt {
             AdapterEvent::DeviceAdded(addr) => {
-                println!("New or changed device: {}", addr);
+                println!("New or changed device: {addr}");
                 let device = adapter.device(addr)?;
                 let name = device.name().await?;
                 let rssi = device.rssi().await?;
-                println!("  name: {:?}, rssi: {:?}", name, rssi);
+                println!("  name: {name:?}, rssi: {rssi:?}");
                 
                 // TODO: actually find a way to detect a sony device 
                 if name == Some("Sony".to_string()) {
@@ -56,10 +56,10 @@ async fn find_sony_device(adapter: &Adapter) -> Result<Device, Box<dyn std::erro
                 }
             }
             AdapterEvent::DeviceRemoved(addr) => {
-                println!("Device out of range: {}", addr);
+                println!("Device out of range: {addr}");
             }
             AdapterEvent::PropertyChanged(prop) => {
-                println!("Device had {:?} change",prop);
+                println!("Device had {prop:?} change");
             }
         }
     }
